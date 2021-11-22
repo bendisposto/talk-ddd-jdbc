@@ -15,7 +15,6 @@
  */
 package de.schauderhaft.ddd.jdbc;
 
-import lombok.val;
 import org.springframework.data.annotation.Id;
 import org.springframework.util.Assert;
 
@@ -48,7 +47,7 @@ public class LegoModel {
 		Assert.notNull(brick, "We can't add <null> bricks to a model");
 		Assert.notNull(brick.Id, "Save the brick before adding it to a model so that it has a valid ID");
 
-		val brickId = brick.Id;
+		Long brickId = brick.Id;
 
 		content.add(new BrickContentItem(brickId, amount));
 	}

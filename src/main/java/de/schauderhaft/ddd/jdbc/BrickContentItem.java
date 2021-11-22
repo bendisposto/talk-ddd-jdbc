@@ -13,23 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package de.schauderhaft.ddd.jdbc;
 
-import lombok.EqualsAndHashCode;
+import java.util.Objects;
 import org.springframework.data.relational.core.mapping.Table;
 
 /**
  * @author Jens Schauder
  */
 @Table("Content")
-@EqualsAndHashCode(of = "brickId")
 public class BrickContentItem {
 
-	final Long brickId;
-	final Integer amount;
+  final Long brickId;
+  final Integer amount;
 
-	public BrickContentItem(Long brickId, Integer amount) {
-		this.brickId = brickId;
-		this.amount = amount;
-	}
+  public BrickContentItem(Long brickId, Integer amount) {
+    this.brickId = brickId;
+    this.amount = amount;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    BrickContentItem that = (BrickContentItem) o;
+    return Objects.equals(brickId, that.brickId);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(brickId);
+  }
 }
